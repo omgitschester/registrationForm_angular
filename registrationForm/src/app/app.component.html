@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="wrapper">
+      <div class='container'>
+          <h1>Registration</h1>
+      </div>
+
+    
+      <div class='mid'>
+      <h2>Account Information</h2>
+      <form (submit)="formSubmit()" #registrationForm="ngForm" name="registrationForm">
+        *First Name: <input type="text" name="firstName" 
+        required
+        minlength="2"
+        maxlength="30"
+        [(ngModel)]='user.first_name'
+        #firstName='ngModel'
+        />
+        <!-- {{ firstName.errors | json }}
+        {{ firstName.valid | json }} -->
+        <div class='errors' *ngIf='!firstName.valid'>first name is required!</div>
+        <br>
+        
+
+        *Last Name: <input type="text" name="lastName" 
+        required
+        minlength="2"
+        maxlength="30"
+        [(ngModel)]='user.lastName'
+        #lastName='ngModel'
+        />
+        <!-- {{ lastName.errors | json }}
+        {{ lastName.valid | json }} -->
+        <div class='errors' *ngIf='!lastName.valid'>last name is required!</div>
+        <br>
+
+
+        *Email: <input type="text" name="email"
+        email
+        minlength="2"
+        [(ngModel)]='user.email'
+        #email='ngModel'
+        />
+        <!-- {{ email.errors | json }}
+        {{ email.valid | json }} -->
+        <div class='errors' *ngIf='email.errors'>valid email required!</div>
+        <br>
+
+
+        *Password: <input type="password" name="password"
+        required
+        minlength="2"
+        [(ngModel)]='user.password'
+        #password='ngModel'
+        />
+        <!-- {{ password.errors | json }}
+        {{ password.valid | json }} -->
+        <div class='errors' *ngIf='password.errors'>Password must be atleast 6 characters!</div>
+        <br>
+
+
+        *Password Confirmation: <input type="password" name="passwordConfirmation"
+        required
+        [(ngModel)]='user.passwordConfirmation'
+        #passwordConfirmation='ngModel'
+        />
+        <!-- {{ passwordConfirmation.errors | json }}
+        {{ passwordConfirmation.valid | json }} -->
+        <div class='errors' *ngIf="(validPassword() || passwordConfirmation.errors)" >Password must match</div>
+        <br>
+
+        *Street Address: <input type="text" name="street"
+        required
+        minlength="2"
+        [(ngModel)]='user.street'
+        #street='ngModel'
+        />
+        <!-- {{ street.errors | json }}
+        {{ street.valid | json }} -->
+        <div class='errors' *ngIf='street.errors'>Address is required!</div>
+        <br>
+
+
+        *Unit/ Apt #: <input type="text" name="unit"
+        minlength="2"
+        [(ngModel)]='user.unit'
+        #unit='ngModel'
+        />
+        <br>
+
+
+        *City: <input type="text" name="city"
+        required
+        minlength="2"
+        [(ngModel)]='user.city'
+        #city='ngModel'
+        />
+        <div class='errors' *ngIf='city.errors'>City is required!</div>
+        <br>
+
+        
+        *State: <select name="state"
+        [(ngModel)]='user.state'
+        #state='ngModel'
+        >
+        <option value="CA">California</option>
+        <option value="Taco">Taco</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Potato">Potato</option>
+        <option value="Pizza">Pizza</option>
+        </select>
+        <div class='errors' *ngIf='state.errors'>State or Potato is required!</div>
+        <br>
+
+
+        *Feeling lucky?: Yes!<input type="radio" name="radio1"> No! <input type="radio" name="radio2">
+
+        <br>
+
+
+      </form>
+      <!-- {{ this.user | json }} -->
+       </div>
+    <div class="regbutton" >
+      <button type="submit" [disabled]="!registrationForm.form.valid">Register</button>
+    </div>
+
+    <div class="success" *ngIf='succeded'>
+      <p>Thank you for registering with us, {{ user.firstName }}</p>
+    </div>
+
+  
+  </div>
+
+  
+</body>
+</html>
